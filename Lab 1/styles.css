@@ -1,0 +1,64 @@
+/* Lab 3 - CSS básico */
+/* Hector Alejandro Barron Tamayo */
+
+/* Selector universal */
+* {
+    box-sizing: border-box;
+}
+
+/* Selector genérico (etiqueta) */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+
+/* Selector de id */
+#sobre-mi {
+    background-color: white;
+    padding: 15px;
+}
+
+/* Selector de clase */
+.caja {
+    background-color: white;
+    padding: 15px;
+    margin: 15px;
+    border: 1px solid gray;
+}
+
+/* Títulos */
+h1 {
+    color: darkblue;
+}
+
+h2 {
+    color: darkred;
+}
+
+/* Lista */
+ul {
+    color: black;
+}
+
+/* Tabla */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+}
+
+/* Formulario */
+input, select, textarea {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+/* Pseudo-clase */
+a:hover {
+    color: red;
+}
