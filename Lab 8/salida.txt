@@ -1,0 +1,1 @@
+Hola, este archivo lo creó Node usando el módulo fs.

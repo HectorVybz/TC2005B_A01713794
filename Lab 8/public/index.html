@@ -1,0 +1,226 @@
+node<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sitio personal - Hector Alejandro Barron Tamayo</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" 
+          rel="stylesheet" 
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" 
+          crossorigin="anonymous">
+
+    <!-- Mi CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="container mt-4">
+
+<header class="caja mb-4">
+    <h1 class="text-primary">Hector Alejandro Barron Tamayo</h1>
+    <p>
+        Matrícula: A01713794 |
+        Correo: <a href="mailto:a01713794@tec.mx">a01713794@tec.mx</a>
+    </p>
+
+    <nav>
+        <a href="#sobre-mi">Sobre mí</a> |
+        <a href="#experiencia">Experiencia</a> |
+        <a href="#formulario">Formulario</a> |
+        <a href="#preguntas">Preguntas</a>
+    </nav>
+</header>
+
+<main>
+
+<section id="sobre-mi" class="caja mb-4">
+    <h2 class="text-success">Sobre mí</h2>
+    <p>
+        Me gusta jugar videojuegos, pasar tiempo con mis amigos,
+        salir de viaje, bailar e ir de fiesta.
+        Disfruto aprender cosas nuevas relacionadas con tecnología
+        y construcción de software.
+    </p>
+
+    <img src="Yo.jpeg" alt="Foto de Hector Alejandro Barron Tamayo" 
+         class="img-fluid rounded" width="250">
+</section>
+
+<section id="experiencia" class="caja mb-4">
+    <h2>Experiencia</h2>
+
+    <p>
+        He realizado proyectos en el Tec como IoT, POO y PCOO.
+    </p>
+
+    <h3>Hobbies</h3>
+    <ul class="list-group mb-3">
+        <li class="list-group-item">Videojuegos</li>
+        <li class="list-group-item">Viajar</li>
+        <li class="list-group-item">Bailar</li>
+        <li class="list-group-item">Salir con amigos</li>
+    </ul>
+
+    <h3>Tabla de ejemplo</h3>
+    <table class="table table-bordered">
+        <tr>
+            <th>Actividad</th>
+            <th>Frecuencia</th>
+        </tr>
+        <tr>
+            <td>Videojuegos</td>
+            <td>Semanal</td>
+        </tr>
+        <tr>
+            <td>Viajar</td>
+            <td>Ocasional</td>
+        </tr>
+    </table>
+</section>
+
+<section id="formulario" class="caja mb-4">
+    <h2>Formulario</h2>
+
+    <form>
+        <div class="mb-3">
+            <label class="form-label">Nombre:</label>
+            <input type="text" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Correo:</label>
+            <input type="email" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Contraseña:</label>
+            <input type="password" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Tema:</label>
+            <select class="form-select">
+                <option>Software</option>
+                <option>Web</option>
+                <option>IoT</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Enviar</button>
+        <button type="reset" class="btn btn-secondary">Limpiar</button>
+    </form>
+</section>
+
+<section id="preguntas" class="caja">
+
+<h2>Preguntas Lab 2 - HTML</h2>
+
+<h3>1. Diferencia entre Internet y Web</h3>
+<p>Internet es la red global que conecta computadoras. La Web es un servicio que funciona sobre Internet usando HTTP.</p>
+
+
+<h3>2. Partes de un URL</h3>
+<p>Esquema, dominio, ruta, parámetros y fragmento.</p>
+
+
+<h3>3. Métodos HTTP</h3>
+<p>GET obtiene información, POST envía datos, PUT reemplaza, PATCH actualiza parcialmente, DELETE elimina.</p>
+
+
+<h3>4. Método para enviar usuario y contraseña</h3>
+<p>Se usa POST porque no envía los datos en la barra de direcciones.</p>
+
+
+<h3>5. Método al acceder a una página</h3>
+<p>Normalmente GET.</p>
+
+
+<h3>6. Código 200</h3>
+<p>Significa que la petición fue exitosa.</p>
+
+
+<h3>7. Error 404</h3>
+<p>Es recurso no encontrado. El desarrollador debe revisarlo si es error del sitio.</p>
+
+
+<h3>8. Error 500</h3>
+<p>Es un error interno del servidor. Generalmente lo debe corregir el desarrollador.</p>
+
+
+<h3>9. Deprecated</h3>
+<p>Significa que ya no se recomienda usarlo. Ejemplo: font, center, frame.</p>
+
+
+<h3>10. Diferencias HTML4 y HTML5</h3>
+<p>HTML5 agrega etiquetas semánticas, mejor multimedia y mejores formularios.</p>
+
+
+<h3>11. Componentes de tabla</h3>
+<p>table, tr, th, td.</p>
+
+
+<h3>12. Controles de formulario</h3>
+<p>input, select, textarea, button.</p>
+
+
+<h3>13. Soporte HTML5</h3>
+<p>Uso Microsoft Edge. Resultado en html5test: ____ / 555.</p>
+
+
+<h3>14. Ciclo de vida</h3>
+<p>Planeación, análisis, diseño, implementación y mantenimiento.</p>
+
+
+<h3>15. Ciclo de desarrollo</h3>
+<p>Requisitos, diseño, desarrollo, pruebas y mantenimiento.</p>
+
+<hr>
+
+<h2>Preguntas Lab 3 - CSS</h2>
+
+<h3>1. Uso de !important</h3>
+<p>No es recomendable usarlo mucho porque dificulta el mantenimiento del código.</p>
+
+
+<h3>2. Imagen de fondo</h3>
+<p>Debe elegirse bien porque puede afectar la visibilidad y el rendimiento.</p>
+
+
+<h3>3. Unidades %, px y pt</h3>
+<p>% es adaptable, px es fijo y pt se usa más para impresión.</p>
+
+
+<h3>4. CSS minificado</h3>
+<p>Reduce el tamaño del archivo y mejora la velocidad de carga.</p>
+
+<hr>
+
+<h2>Preguntas Lab 5 - Frameworks</h2>
+
+<h3>1. Describe Material Design</h3>
+<p>
+Material Design es un sistema de diseño creado por Google que busca crear
+interfaces modernas, limpias y consistentes. Se basa en el uso de sombras,
+profundidad, animaciones suaves y colores bien definidos para simular
+superficies físicas en el entorno digital. Su objetivo es mejorar la
+experiencia del usuario haciendo que las interfaces sean intuitivas,
+visualmente atractivas y fáciles de usar en diferentes dispositivos.
+</p>
+
+</section>
+
+</main>
+
+<footer class="caja mt-4">
+    <p>Editor utilizado: Visual Studio Code</p>
+    <p><a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a></p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" 
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
