@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lab 6 - Programación orientada a eventos</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+        crossorigin="anonymous">
+
+  <style>
+    .hint { font-size: .9rem; }
+    .ok { color: #198754; }
+    .bad { color: #dc3545; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .bigText { font-size: 1.25rem; letter-spacing: .5px; }
+  </style>
+</head>
+
+<body class="bg-light">
+  <header class="bg-dark text-white py-4 mb-4">
+    <div class="container">
+      <h1 class="h3 mb-1">Lab 6: Programación orientada a eventos</h1>
+      <p class="mb-0">
+        Hector Alejandro Barron Tamayo | A01713794 |
+        <a class="link-info" href="mailto:a01713794@tec.mx">a01713794@tec.mx</a>
+      </p>
+    </div>
+  </header>
+
+  <main class="container mb-5">
+    <div class="row g-3">
+
+      <!-- Panel principal -->
+      <section class="col-12 col-lg-7">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h2 class="h5">Validador de contraseña (Opción A)</h2>
+            <p id="textoDemo" class="mb-3">
+              Pasa el mouse aquí para cambiar el estilo del texto (evento <span class="mono">mouseover</span>).
+              Da doble click para volverlo normal (<span class="mono">dblclick</span>).
+            </p>
+
+            <form id="formPass" novalidate>
+              <div class="mb-3">
+                <label for="pass1" class="form-label">Contraseña</label>
+                <input id="pass1" type="password" class="form-control" autocomplete="new-password" required>
+                <div id="hint1" class="hint text-muted mt-1">
+                  Tip: usa al menos 8 caracteres, 1 mayúscula, 1 número y 1 símbolo.
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="pass2" class="form-label">Verificar contraseña</label>
+                <input id="pass2" type="password" class="form-control" autocomplete="new-password" required>
+                <div id="hint2" class="hint text-muted mt-1">
+                  Tip: debe coincidir exactamente con la primera.
+                </div>
+              </div>
+
+              <div class="d-flex gap-2">
+                <button class="btn btn-primary" type="submit">Validar</button>
+                <button class="btn btn-outline-secondary" type="reset" id="btnLimpiar">Limpiar</button>
+                <button class="btn btn-success" type="button" id="btnAuto">Auto-generar ejemplo</button>
+              </div>
+            </form>
+
+            <hr>
+
+            <div id="resultado" class="alert alert-secondary mb-0" role="alert">
+              Aquí verás el resultado de la validación.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Panel de reglas / ayuda dinámica -->
+      <section class="col-12 col-lg-5">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h2 class="h5">Reglas que vamos a validar</h2>
+            <ul class="mb-3">
+              <li>Mínimo 8 caracteres</li>
+              <li>Al menos 1 mayúscula</li>
+              <li>Al menos 1 número</li>
+              <li>Al menos 1 símbolo (ej. !@#$)</li>
+              <li>Ambas contraseñas deben coincidir</li>
+            </ul>
+
+            <div class="alert alert-info mb-0">
+              <strong>Ayuda dinámica:</strong> al escribir, el sistema te dirá en qué regla vas fallando.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Preguntas -->
+      <section class="col-12">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h2 class="h5">Preguntas a responder</h2>
+
+            <h3 class="h6">1) ¿Por qué es buena práctica validar inputs con JS antes de enviarlos al servidor?</h3>
+            <p>
+              Porque mejora la experiencia del usuario (feedback inmediato), reduce errores comunes y evita
+              mandar solicitudes innecesarias al servidor. Aun así, siempre se debe validar también en el servidor.
+            </p>
+
+            <h3 class="h6">2) ¿Cómo puedes saltarte la seguridad de validaciones hechas con JavaScript?</h3>
+            <p>
+              Desactivando JavaScript, modificando el código en el navegador (DevTools), enviando la solicitud manualmente
+              (por ejemplo con Postman/curl) o alterando el HTML/JS para omitir reglas.
+            </p>
+
+            <h3 class="h6">3) Si te puedes saltar las validaciones de JS, ¿por qué sigue siendo buena práctica?</h3>
+            <p>
+              Porque su objetivo principal es la usabilidad y el primer filtro de errores. La seguridad real debe estar en el servidor.
+              JS ayuda a reducir fallos y guiar al usuario, pero no reemplaza la validación backend.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Fuentes -->
+      <section class="col-12">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h2 class="h5">Fuentes consultadas</h2>
+            <ul class="mb-0">
+              <li><a href="https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation" target="_blank" rel="noreferrer">MDN - Form validation</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/addEventListener" target="_blank" rel="noreferrer">MDN - addEventListener</a></li>
+              <li><a href="https://getbootstrap.com/docs/5.3/forms/overview/" target="_blank" rel="noreferrer">Bootstrap 5 - Forms</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="lab6.js"></script>
+
+  <!-- Bootstrap JS  -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+          crossorigin="anonymous"></script>
+</body>
+</html>
