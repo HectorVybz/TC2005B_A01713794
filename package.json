@@ -1,0 +1,25 @@
+{
+  "name": "tc2005b_a01713794",
+  "version": "1.0.0",
+  "description": "Labs de clase",
+  "homepage": "https://github.com/HectorVybz/TC2005B_A01713794#readme",
+  "bugs": {
+    "url": "https://github.com/HectorVybz/TC2005B_A01713794/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HectorVybz/TC2005B_A01713794.git"
+  },
+  "license": "ISC",
+  "author": "Hector Alejandro Barron Tamayo",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "start": "node --watch app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {}
+}
