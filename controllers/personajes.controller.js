@@ -1,13 +1,13 @@
-const Personaje = require('../models/personaje.model');
+//const Personaje = require('../models/personaje.model');
 
 exports.get_add = (request, response, next) => {
     response.render('new');
 };
 
 exports.post_add = (request, response, next) => {
-    const personaje = new Personaje(request.body.nombre, 
-        request.body.descripcion, request.body.tipo, request.body.imagen);
-    personaje.save();
+    // const personaje = new Personaje(request.body.nombre, 
+    //     request.body.descripcion, request.body.tipo, request.body.imagen);
+    // personaje.save();
     response.redirect('/personajes');
 };
 
@@ -19,5 +19,5 @@ exports.get_old = (request, response, next) => {
 exports.get_list = (request, response, next) => {
     console.log(request.session.username);
     const personajes = Personaje.fetchAll();
-    response.render('list', {personajes: personajes}); 
+    response.render('list', {personajes: personajes || []}); 
 };
