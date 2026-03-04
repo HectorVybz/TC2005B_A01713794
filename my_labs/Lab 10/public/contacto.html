@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HSR - Contacto</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-dark text-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+  <div class="container">
+    <a class="navbar-brand fw-semibold" href="/inicio">HSR Fan Site</a>
+    <div class="navbar-nav">
+      <a class="nav-link" href="/inicio">Inicio</a>
+      <a class="nav-link" href="/personajes">Personajes</a>
+      <a class="nav-link active" href="/contacto">Contacto</a>
+    </div>
+  </div>
+</nav>
+
+<main class="container py-4">
+  <h1 class="h3">Contacto</h1>
+  <p class="text-secondary">Esta forma manda datos con <code>POST /enviar</code> y el servidor los guarda en un .txt.</p>
+
+  <form action="/enviar" method="post" class="row g-3">
+    <div class="col-12 col-md-6">
+      <label class="form-label">Nombre</label>
+      <input name="nombre" class="form-control" required>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <label class="form-label">Personaje favorito</label>
+      <select name="personaje" class="form-select" required>
+        <option value="">Selecciona uno</option>
+        <option>Kafka</option>
+        <option>Acheron</option>
+        <option>Jingliu</option>
+        <option>Dan Heng IL</option>
+        <option>Trailblazer</option>
+      </select>
+    </div>
+
+    <div class="col-12">
+      <label class="form-label">Mensaje</label>
+      <textarea name="mensaje" class="form-control" rows="4" required></textarea>
+    </div>
+
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit">Enviar</button>
+      <a class="btn btn-outline-light" href="/inicio">Volver</a>
+    </div>
+  </form>
+</main>
+
+</body>
+</html>
