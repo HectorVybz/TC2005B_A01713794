@@ -1,5 +1,5 @@
 // Lab 10 - Rutas y formas (Honkai: Star Rail)
-// Servidor Node SIN frameworks (simple y entendible)
+// Node sin frameworks: rutas + POST + guardar en txt + estáticos (imágenes)
 
 const http = require("http");
 const fs = require("fs");
@@ -8,13 +8,11 @@ const url = require("url");
 
 const PORT = 3000;
 
-// Helper: manda respuesta
 function send(res, status, contentType, body) {
   res.writeHead(status, { "Content-Type": contentType });
   res.end(body);
 }
 
-// Helper: lee archivo y responde
 function serveFile(res, filePath) {
   fs.readFile(filePath, (err, data) => {
     if (err) {
@@ -23,27 +21,27 @@ function serveFile(res, filePath) {
     }
 
     const ext = path.extname(filePath).toLowerCase();
-    const types = {
+    const types = {     
       ".html": "text/html; charset=utf-8",
       ".css": "text/css; charset=utf-8",
       ".js": "text/javascript; charset=utf-8",
       ".png": "image/png",
       ".jpg": "image/jpeg",
       ".jpeg": "image/jpeg",
-      ".gif": "image/gif"
+      ".gif": "image/gif",
+      ".svg": "image/svg+xml",
+      ".webp": "image/webp"
     };
 
     send(res, 200, types[ext] || "application/octet-stream", data);
   });
 }
 
-// Helper: parsea body x-www-form-urlencoded
 function parseForm(body) {
   const params = new URLSearchParams(body);
   return Object.fromEntries(params.entries());
 }
 
-// Asegurar carpeta data
 function ensureDataFolder() {
   const folder = path.join(__dirname, "data");
   if (!fs.existsSync(folder)) fs.mkdirSync(folder);
@@ -56,7 +54,22 @@ const server = http.createServer((req, res) => {
 
   console.log(`[${new Date().toISOString()}] ${req.method} ${route}`);
 
-  // ========== RUTAS GET (3+) ==========
+  // ========== 1) Servir archivos estáticos desde /public ==========
+  if (req.method === "GET") {
+    const staticPath = path.join(__dirname, "public", route);
+
+    // Seguridad básica: evita que se salgan de /public con rutas raras
+    const publicRoot = path.join(__dirname, "public");
+    if (!staticPath.startsWith(publicRoot)) {
+      return send(res, 400, "text/plain; charset=utf-8", "400 - Ruta inválida");
+    }
+
+    if (fs.existsSync(staticPath) && fs.statSync(staticPath).isFile()) {
+      return serveFile(res, staticPath);
+    }
+  }
+
+  // ========== 2) Rutas GET ==========
   if (req.method === "GET" && (route === "/" || route === "/inicio")) {
     return serveFile(res, path.join(__dirname, "public", "index.html"));
   }
@@ -69,26 +82,18 @@ const server = http.createServer((req, res) => {
     return serveFile(res, path.join(__dirname, "public", "contacto.html"));
   }
 
-  // Servir estáticos si pones css/img en public (opcional)
-  if (req.method === "GET" && route.startsWith("/public/")) {
-    const filePath = path.join(__dirname, route); // ej: /public/archivo.css
-    return serveFile(res, filePath);
-  }
-
-  // ========== RUTA POST (forma) ==========
+  // ========== 3) Ruta POST (forma) ==========
   if (req.method === "POST" && route === "/enviar") {
     let body = "";
 
     req.on("data", (chunk) => {
       body += chunk.toString();
-      // límite para evitar que explote
       if (body.length > 1e6) req.socket.destroy();
     });
 
     req.on("end", () => {
       const data = parseForm(body);
 
-      // Validación simple
       const nombre = (data.nombre || "").trim();
       const personaje = (data.personaje || "").trim();
       const mensaje = (data.mensaje || "").trim();
@@ -98,7 +103,9 @@ const server = http.createServer((req, res) => {
           res,
           400,
           "text/html; charset=utf-8",
-          `<h1>Error 400</h1><p>Faltan campos. Regresa y completa el formulario.</p><a href="/contacto">Volver</a>`
+          `<h1>Error 400</h1>
+           <p>Faltan campos. Regresa y completa el formulario.</p>
+           <a href="/contacto">Volver</a>`
         );
       }
 
@@ -117,12 +124,11 @@ const server = http.createServer((req, res) => {
           return send(res, 500, "text/plain; charset=utf-8", "500 - No se pudo guardar el archivo");
         }
 
-        // Respuesta HTML simple
         return send(
           res,
           200,
           "text/html; charset=utf-8",
-          `<h1>¡Mensaje guardado! ✅</h1>
+          `<h1>¡Mensaje guardado!</h1>
            <p>Gracias, <strong>${nombre}</strong>. Tu mensaje se guardó en el servidor.</p>
            <p><a href="/inicio">Volver al inicio</a> | <a href="/contacto">Enviar otro</a></p>`
         );
@@ -132,7 +138,7 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // ========== 404 (ruta no existe) ==========
+  // ========== 4) 404 ==========
   send(res, 404, "text/html; charset=utf-8", `
     <h1>404 - Ruta no encontrada</h1>
     <p>La ruta <strong>${route}</strong> no existe.</p>
