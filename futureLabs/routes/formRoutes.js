@@ -1,20 +1,8 @@
 const express = require("express");
 const router = express.Router();
+const hsrController = require("../controllers/hsrController");
 
-router.get("/contacto", (req, res) => {
-    res.render("contacto");
-});
-
-router.post("/enviar", (req, res) => {
-    const nombre = req.body.nombre;
-    const personaje = req.body.personaje;
-    const mensaje = req.body.mensaje;
-
-    res.render("respuesta", {
-        nombre,
-        personaje,
-        mensaje
-    });
-});
+router.get("/contacto", hsrController.getContacto);
+router.post("/enviar", hsrController.postEnviar);
 
 module.exports = router;

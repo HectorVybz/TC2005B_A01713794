@@ -4,7 +4,6 @@
 <%- include("includes/head") %>
 
 <body class="bg-dark text-light">
-
 <%- include("includes/navbar") %>
 
 <div class="container py-4">
@@ -17,33 +16,7 @@
                     <img src="/images/<%= personaje.img %>" class="card-img-top" alt="<%= personaje.nombre %>">
                     <div class="card-body">
                         <h5 class="card-title"><%= personaje.nombre %></h5>
-
-                        <% if (personaje.nombre === "Kafka") { %>
-                            <p class="card-text">
-                                Kafka es una Stellaron Hunter conocida por su elegancia,
-                                calma y habilidad para manipular situaciones a su favor.
-                            </p>
-                        <% } else if (personaje.nombre === "Acheron") { %>
-                            <p class="card-text">
-                                Acheron es una guerrera misteriosa con gran poder,
-                                una presencia imponente y un estilo de combate letal.
-                            </p>
-                        <% } else if (personaje.nombre === "Jingliu") { %>
-                            <p class="card-text">
-                                Jingliu es una espadachina legendaria de la Xianzhou,
-                                reconocida por su fuerza, disciplina y pasado trágico.
-                            </p>
-                        <% } else if (personaje.nombre === "Dan Heng IL") { %>
-                            <p class="card-text">
-                                Dan Heng Imbibitor Lunae representa una faceta poderosa
-                                y ancestral, ligada a su verdadera herencia.
-                            </p>
-                        <% } else if (personaje.nombre === "Trailblazer") { %>
-                            <p class="card-text">
-                                Trailblazer es el protagonista del viaje a bordo del Astral Express,
-                                explorando mundos y enfrentando amenazas estelares.
-                            </p>
-                        <% } %>
+                        <p class="card-text"><%= personaje.descripcion %></p>
                     </div>
                 </div>
             </div>
@@ -52,6 +25,5 @@
 </div>
 
 <%- include("includes/footer") %>
-
 </body>
 </html>

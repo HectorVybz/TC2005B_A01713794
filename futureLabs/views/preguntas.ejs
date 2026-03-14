@@ -8,40 +8,110 @@
 <%- include("includes/navbar") %>
 
 <div class="container py-4">
-    <h1>Preguntas</h1>
 
-    <div class="mb-4">
-        <h4>1. Describe el archivo package.json</h4>
-        <p>
-            El archivo <strong>package.json</strong> es el archivo de configuración principal de un
-            proyecto de Node.js. Contiene información general del proyecto, como su nombre, versión,
-            descripción, autor y licencia.
-        </p>
-        <p>
-            También sirve para registrar las <strong>dependencias</strong> necesarias, como
-            <strong>Express</strong> y <strong>EJS</strong>, para que puedan instalarse con
-            <code>npm install</code>.
-        </p>
-        <p>
-            Además, permite definir <strong>scripts</strong>, por ejemplo <code>npm start</code>,
-            para ejecutar la aplicación fácilmente. En resumen, organiza la base del proyecto y
-            los paquetes que necesita para funcionar.
-        </p>
-    </div>
+<h1>Preguntas de los Laboratorios</h1>
 
-    <div class="mb-4">
-        <h4>2. ¿Qué otros templating engines existen para Node?</h4>
-        <p>
-            Además de EJS, existen otros motores de plantillas para Node.js como
-            <strong>Pug</strong>, <strong>Handlebars</strong>, <strong>Mustache</strong> y
-            <strong>Nunjucks</strong>.
-        </p>
-        <p>
-            Todos ellos permiten generar HTML dinámico desde el servidor, pero cada uno tiene su
-            propia sintaxis y estilo. Por ejemplo, Pug usa una sintaxis más compacta, mientras que
-            Handlebars se basa en plantillas con expresiones entre llaves.
-        </p>
-    </div>
+<hr>
+
+<h3>Lab 12</h3>
+
+<div class="mb-4">
+
+<h5>1. Describe el archivo package.json</h5>
+
+<p>
+El archivo <strong>package.json</strong> es el archivo de configuración principal de un proyecto de Node.js.
+Contiene información del proyecto como su nombre, versión, descripción, autor y licencia.
+</p>
+
+<p>
+También define las <strong>dependencias</strong> que necesita la aplicación para funcionar,
+por ejemplo <strong>Express</strong> y <strong>EJS</strong>. Estas dependencias pueden instalarse
+automáticamente usando el comando <code>npm install</code>.
+</p>
+
+<p>
+Además permite definir <strong>scripts</strong> como <code>npm start</code> que facilitan ejecutar
+la aplicación. En resumen, package.json administra las librerías y configuración del proyecto.
+</p>
+
+</div>
+
+<div class="mb-4">
+
+<h5>2. ¿Qué otros templating engines existen para Node?</h5>
+
+<p>
+Además de EJS existen otros motores de plantillas que se utilizan con Node.js para generar HTML
+dinámico desde el servidor.
+</p>
+
+<p>
+Algunos ejemplos son:
+</p>
+
+<ul>
+<li><strong>Pug</strong></li>
+<li><strong>Handlebars</strong></li>
+<li><strong>Mustache</strong></li>
+<li><strong>Nunjucks</strong></li>
+</ul>
+
+<p>
+Cada uno tiene su propia sintaxis y características, pero todos permiten separar la lógica
+del servidor de la presentación del contenido en HTML.
+</p>
+
+</div>
+
+<hr>
+
+<h3>Lab 13 - Arquitectura MVC</h3>
+
+<div class="mb-4">
+
+<h5>1. ¿Qué beneficios encuentras en el estilo MVC?</h5>
+
+<p>
+El estilo arquitectónico MVC permite organizar mejor una aplicación separando sus
+responsabilidades en tres componentes principales: modelo, vista y controlador.
+</p>
+
+<p>
+El <strong>modelo</strong> administra los datos, la <strong>vista</strong> muestra la información
+al usuario y el <strong>controlador</strong> maneja la lógica de la aplicación y conecta
+el modelo con la vista.
+</p>
+
+<p>
+Esta separación hace que el código sea más fácil de mantener, entender y modificar,
+además de permitir reutilizar componentes y trabajar de forma más organizada
+cuando la aplicación crece.
+</p>
+
+</div>
+
+<div class="mb-4">
+
+<h5>2. ¿Encuentras alguna desventaja en el estilo MVC?</h5>
+
+<p>
+Una posible desventaja del estilo MVC es que al inicio puede parecer más complejo
+porque requiere separar el proyecto en varias carpetas y archivos diferentes.
+</p>
+
+<p>
+Para aplicaciones pequeñas esta estructura puede parecer innecesaria, ya que hay que
+crear modelos, controladores y vistas incluso cuando la lógica es sencilla.
+</p>
+
+<p>
+Sin embargo, cuando la aplicación crece esta organización facilita el mantenimiento,
+la escalabilidad y la claridad del código.
+</p>
+
+</div>
+
 </div>
 
 <%- include("includes/footer") %>
