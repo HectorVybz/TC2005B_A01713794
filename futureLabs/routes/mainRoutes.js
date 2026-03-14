@@ -11,5 +11,6 @@ router.get("/personajes", hsrController.getPersonajes);
 router.get("/facciones", hsrController.getFacciones);
 router.get("/galeria", hsrController.getGaleria);
 router.get("/preguntas", hsrController.getPreguntas);
+router.get("/logout", hsrController.getLogout);
 
 module.exports = router;

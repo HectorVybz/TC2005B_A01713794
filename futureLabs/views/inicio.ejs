@@ -11,16 +11,29 @@
     <h1>Bienvenido a HSR Express</h1>
 
     <p>
-        HSR Express es un sitio inspirado en Honkai: Star Rail, desarrollado para practicar
-        Express, rutas, vistas con EJS y manejo de archivos estáticos.
+        HSR Express es un sitio inspirado en Honkai: Star Rail, desarrollado con Express, EJS,
+        arquitectura MVC, sesiones y cookies.
     </p>
 
-    <p>
-        Aquí puedes explorar personajes, conocer algunas facciones del universo del juego,
-        ver una pequeña galería, responder un formulario de contacto y consultar una sección
-        de preguntas del laboratorio.
-    </p>
+    <% if (nombreSesion) { %>
+        <div class="alert alert-success">
+            Bienvenido de nuevo, <strong><%= nombreSesion %></strong>.
+        </div>
+    <% } else { %>
+        <div class="alert alert-secondary">
+            Aún no hay una sesión iniciada.
+        </div>
+    <% } %>
 
+    <div class="alert alert-info">
+        Personaje favorito guardado en cookie: <strong><%= personajeCookie %></strong>
+    </div>
+
+    <% if (nombreSesion || personajeCookie !== "No definido") { %>
+        <a href="/logout" class="btn btn-danger mb-3">Cerrar sesión</a>
+    <% } %>
+
+    <br>
     <img src="/images/trailblazer.webp" width="300" alt="Trailblazer" class="img-fluid rounded mt-3">
 </div>
 
