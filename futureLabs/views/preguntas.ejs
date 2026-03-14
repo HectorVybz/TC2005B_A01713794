@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+
+<%- include("includes/head") %>
+
+<body class="bg-dark text-light">
+
+<%- include("includes/navbar") %>
+
+<div class="container py-4">
+    <h1>Preguntas</h1>
+
+    <div class="mb-4">
+        <h4>1. Describe el archivo package.json</h4>
+        <p>
+            El archivo <strong>package.json</strong> es el archivo de configuración principal de un
+            proyecto de Node.js. Contiene información general del proyecto, como su nombre, versión,
+            descripción, autor y licencia.
+        </p>
+        <p>
+            También sirve para registrar las <strong>dependencias</strong> necesarias, como
+            <strong>Express</strong> y <strong>EJS</strong>, para que puedan instalarse con
+            <code>npm install</code>.
+        </p>
+        <p>
+            Además, permite definir <strong>scripts</strong>, por ejemplo <code>npm start</code>,
+            para ejecutar la aplicación fácilmente. En resumen, organiza la base del proyecto y
+            los paquetes que necesita para funcionar.
+        </p>
+    </div>
+
+    <div class="mb-4">
+        <h4>2. ¿Qué otros templating engines existen para Node?</h4>
+        <p>
+            Además de EJS, existen otros motores de plantillas para Node.js como
+            <strong>Pug</strong>, <strong>Handlebars</strong>, <strong>Mustache</strong> y
+            <strong>Nunjucks</strong>.
+        </p>
+        <p>
+            Todos ellos permiten generar HTML dinámico desde el servidor, pero cada uno tiene su
+            propia sintaxis y estilo. Por ejemplo, Pug usa una sintaxis más compacta, mientras que
+            Handlebars se basa en plantillas con expresiones entre llaves.
+        </p>
+    </div>
+</div>
+
+<%- include("includes/footer") %>
+
+</body>
+</html>

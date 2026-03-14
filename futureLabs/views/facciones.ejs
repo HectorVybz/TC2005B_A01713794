@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+
+<%- include("includes/head") %>
+
+<body class="bg-dark text-light">
+
+<%- include("includes/navbar") %>
+
+<div class="container py-4">
+    <h1>Facciones</h1>
+    <p>
+        En Honkai: Star Rail existen distintos grupos con objetivos, ideologías y funciones
+        muy diferentes dentro del universo del juego.
+    </p>
+
+    <div class="row">
+        <% facciones.forEach(faccion => { %>
+            <div class="col-md-6 mb-4">
+                <div class="card bg-secondary text-light h-100">
+                    <img src="/images/<%= faccion.img %>" class="card-img-top" alt="<%= faccion.nombre %>">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= faccion.nombre %></h5>
+
+                        <% if (faccion.nombre === "Astral Express") { %>
+                            <p class="card-text">
+                                El Astral Express es el grupo principal de exploradores que viaja
+                                entre mundos siguiendo la ruta trazada por Akivili.
+                            </p>
+                        <% } else if (faccion.nombre === "Stellaron Hunters") { %>
+                            <p class="card-text">
+                                Los Stellaron Hunters son una organización enigmática cuyas acciones
+                                parecen caóticas, aunque siguen un plan muy calculado.
+                            </p>
+                        <% } else if (faccion.nombre === "Xianzhou Luofu") { %>
+                            <p class="card-text">
+                                La Xianzhou Luofu es una de las naves de la alianza Xianzhou,
+                                con una cultura marcada por la inmortalidad y la disciplina.
+                            </p>
+                        <% } else if (faccion.nombre === "Interastral Peace Corporation") { %>
+                            <p class="card-text">
+                                La Interastral Peace Corporation es una poderosa entidad económica
+                                con influencia política, tecnológica y comercial en toda la galaxia.
+                            </p>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</div>
+
+<%- include("includes/footer") %>
+
+</body>
+</html>
