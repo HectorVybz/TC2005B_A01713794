@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="es">
+<%- include("includes/head") %>
+<body class="bg-dark text-light">
+<%- include("includes/navbar") %>
+
+<div class="container py-4">
+    <h1><%= personaje.nombre %></h1>
+
+    <div class="card bg-secondary text-light">
+        <img src="/images/<%= personaje.img %>" class="card-img-top" alt="<%= personaje.nombre %>">
+        <div class="card-body">
+            <p><%= personaje.descripcion %></p>
+            <a href="/personajes/editar/<%= personaje.id %>" class="btn btn-warning">Editar personaje</a>
+            <a href="/personajes" class="btn btn-primary">Volver</a>
+        </div>
+    </div>
+</div>
+
+<%- include("includes/footer") %>
+</body>
+</html>

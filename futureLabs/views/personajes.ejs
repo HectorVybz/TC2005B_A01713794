@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="es">
-
 <%- include("includes/head") %>
-
 <body class="bg-dark text-light">
 <%- include("includes/navbar") %>
 
 <div class="container py-4">
     <h1>Personajes</h1>
+
+    <a href="/personajes/nuevo" class="btn btn-success mb-4">Agregar personaje</a>
 
     <div class="row">
         <% personajes.forEach(personaje => { %>
@@ -17,6 +17,9 @@
                     <div class="card-body">
                         <h5 class="card-title"><%= personaje.nombre %></h5>
                         <p class="card-text"><%= personaje.descripcion %></p>
+
+                        <a href="/personajes/<%= personaje.id %>" class="btn btn-primary btn-sm">Ver detalle</a>
+                        <a href="/personajes/editar/<%= personaje.id %>" class="btn btn-warning btn-sm">Editar</a>
                     </div>
                 </div>
             </div>

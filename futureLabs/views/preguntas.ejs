@@ -122,6 +122,39 @@
         </p>
     </div>
 
+    <hr>
+
+    <h3>Lab 17 - Interacción con la base de datos</h3>
+
+    <div class="mb-4">
+        <h5>1. ¿Qué ventajas tiene escribir el código SQL únicamente en la capa del modelo?</h5>
+        <p>
+            Escribir el código SQL únicamente en la capa del modelo permite separar el acceso a los datos
+            del resto de la lógica de la aplicación. Esto hace que el código sea más ordenado, más fácil
+            de mantener y más reutilizable.
+        </p>
+        <p>
+            En este proyecto, por ejemplo, las consultas de personajes y habilidades pueden quedarse en los
+            modelos, mientras que los controladores solo se encargan de recibir la petición y mandar la
+            información a la vista. Además, si cambia una consulta o la estructura de la base de datos,
+            el cambio se realiza en el modelo sin afectar directamente a las vistas ni a los controladores.
+        </p>
+    </div>
+
+    <div class="mb-4">
+        <h5>2. ¿Qué es SQL injection y cómo se puede prevenir?</h5>
+        <p>
+            SQL injection es un ataque en el que un usuario intenta insertar código SQL malicioso dentro
+            de una consulta para alterar su comportamiento o acceder a información no autorizada.
+        </p>
+        <p>
+            Se puede prevenir usando <strong>consultas parametrizadas</strong> con signos de interrogación,
+            validando la entrada del usuario y evitando concatenar directamente datos recibidos dentro del SQL.
+            En lugar de armar el query con texto, se mandan los valores aparte para que MySQL los trate como
+            datos y no como instrucciones.
+        </p>
+    </div>
+
 </div>
 
 <%- include("includes/footer") %>
