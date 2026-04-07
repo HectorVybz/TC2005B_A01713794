@@ -7,6 +7,9 @@ const handleDbError = (res, err) => {
 
 exports.getInicio = (req, res) => {
     let personajeFavorito = "No definido";
+    const nombreSesion = req.session.user
+        ? req.session.user.username
+        : (req.session.nombreUsuario || null);
 
     if (req.headers.cookie) {
         const cookies = req.headers.cookie.split(";").map(cookie => cookie.trim());
@@ -18,7 +21,7 @@ exports.getInicio = (req, res) => {
     }
 
     res.render("inicio", {
-        nombreSesion: req.session.nombreUsuario || null,
+        nombreSesion,
         personajeCookie: personajeFavorito
     });
 };

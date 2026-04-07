@@ -12,16 +12,20 @@
 
     <p>
         HSR Express es un sitio inspirado en Honkai: Star Rail, desarrollado con Express, EJS,
-        arquitectura MVC, sesiones y cookies.
+        arquitectura MVC, sesiones, cookies y autenticación de usuarios.
     </p>
 
-    <% if (nombreSesion) { %>
+    <% if (isAuthenticated && authUser) { %>
         <div class="alert alert-success">
-            Bienvenido de nuevo, <strong><%= nombreSesion %></strong>.
+            Sesión autenticada como <strong><%= authUser.username %></strong>.
+        </div>
+    <% } else if (nombreSesion) { %>
+        <div class="alert alert-secondary">
+            Hay una sesión activa guardada con el nombre <strong><%= nombreSesion %></strong>.
         </div>
     <% } else { %>
         <div class="alert alert-secondary">
-            Aún no hay una sesión iniciada.
+            Aún no has iniciado sesión con un usuario registrado.
         </div>
     <% } %>
 
@@ -29,8 +33,16 @@
         Personaje favorito guardado en cookie: <strong><%= personajeCookie %></strong>
     </div>
 
-    <% if (nombreSesion || personajeCookie !== "No definido") { %>
-        <a href="/logout" class="btn btn-danger mb-3">Cerrar sesión</a>
+    <% if (!isAuthenticated) { %>
+        <a href="/users/login" class="btn btn-primary mb-3">Iniciar sesión</a>
+        <a href="/users/signup" class="btn btn-outline-light mb-3">Registrar usuario</a>
+    <% } %>
+
+    <% if (isAuthenticated || nombreSesion || personajeCookie !== "No definido") { %>
+        <form action="/users/logout" method="POST" class="mb-3">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button type="submit" class="btn btn-danger">Cerrar sesión y limpiar datos</button>
+        </form>
     <% } %>
 
     <br>

@@ -6,8 +6,10 @@
 
 <div class="container py-4">
     <h1>Editar personaje</h1>
+    <p class="text-light-emphasis">Esta ruta está protegida y requiere autenticación.</p>
 
     <form action="/personajes/editar" method="POST">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <input type="hidden" name="id" value="<%= personaje.id %>">
 
         <div class="mb-3">

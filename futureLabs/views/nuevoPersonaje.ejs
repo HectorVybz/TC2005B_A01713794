@@ -6,8 +6,11 @@
 
 <div class="container py-4">
     <h1>Nuevo personaje</h1>
+    <p class="text-light-emphasis">Esta ruta está protegida y solo puede usarse con una sesión autenticada.</p>
 
     <form action="/personajes/nuevo" method="POST">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
         <div class="mb-3">
             <label class="form-label">Nombre</label>
             <input type="text" name="nombre" class="form-control" required>
