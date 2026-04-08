@@ -7,7 +7,7 @@
 <div class="container py-4">
     <h1>Acceso no permitido</h1>
     <div class="alert alert-danger">
-        El token CSRF es inválido o la sesión expiró. Recarga la página e intenta enviar el formulario otra vez.
+        <%= errorMessage || "No tienes permiso para acceder a este recurso." %>
     </div>
     <a href="/inicio" class="btn btn-primary">Volver al inicio</a>
 </div>

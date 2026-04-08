@@ -11,9 +11,9 @@
         <img src="/images/<%= personaje.img %>" class="card-img-top" alt="<%= personaje.nombre %>">
         <div class="card-body">
             <p><%= personaje.descripcion %></p>
-            <% if (isAuthenticated) { %>
+            <% if (hasPermission("personajes_editar")) { %>
                 <a href="/personajes/editar/<%= personaje.id %>" class="btn btn-warning">Editar personaje</a>
-            <% } else { %>
+            <% } else if (!isAuthenticated) { %>
                 <a href="/users/login" class="btn btn-outline-light">Inicia sesión para editar</a>
             <% } %>
             <a href="/personajes" class="btn btn-primary">Volver</a>

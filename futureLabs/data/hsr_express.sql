@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-04-2026 a las 21:58:37
+-- Tiempo de generación: 07-04-2026 a las 23:38:39
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -63,6 +63,29 @@ INSERT INTO `habilidades` (`id`, `personaje_id`, `nombre`, `tipo`, `descripcion`
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `permisos`
+--
+
+CREATE TABLE `permisos` (
+  `id` int(11) NOT NULL,
+  `clave` varchar(100) NOT NULL,
+  `descripcion` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `permisos`
+--
+
+INSERT INTO `permisos` (`id`, `clave`, `descripcion`, `created_at`) VALUES
+(1, 'personajes_crear', 'Permite crear nuevos personajes', '2026-04-07 19:10:00'),
+(2, 'personajes_editar', 'Permite editar personajes existentes', '2026-04-07 19:10:00'),
+(3, 'rbac_ver', 'Permite ver el panel RBAC', '2026-04-07 19:10:00'),
+(4, 'rbac_asignar_roles', 'Permite asignar roles a otros usuarios', '2026-04-07 19:10:00');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `personajes`
 --
 
@@ -88,6 +111,51 @@ INSERT INTO `personajes` (`id`, `nombre`, `img`, `descripcion`, `created_at`) VA
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `descripcion` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `roles`
+--
+
+INSERT INTO `roles` (`id`, `nombre`, `descripcion`, `created_at`) VALUES
+(1, 'admin', 'Control total sobre personajes y administración RBAC', '2026-04-07 19:10:00'),
+(2, 'editor', 'Puede crear y editar personajes, pero no administrar roles', '2026-04-07 19:10:00'),
+(3, 'viewer', 'Solo puede consultar el contenido público', '2026-04-07 19:10:00');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `rol_permisos`
+--
+
+CREATE TABLE `rol_permisos` (
+  `rol_id` int(11) NOT NULL,
+  `permiso_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `rol_permisos`
+--
+
+INSERT INTO `rol_permisos` (`rol_id`, `permiso_id`) VALUES
+(1, 1),
+(1, 2),
+(1, 3),
+(1, 4),
+(2, 1),
+(2, 2);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
@@ -96,6 +164,17 @@ CREATE TABLE `usuarios` (
   `username` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario_roles`
+--
+
+CREATE TABLE `usuario_roles` (
+  `usuario_id` int(11) NOT NULL,
+  `rol_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -110,10 +189,31 @@ ALTER TABLE `habilidades`
   ADD KEY `fk_habilidad_personaje` (`personaje_id`);
 
 --
+-- Indices de la tabla `permisos`
+--
+ALTER TABLE `permisos`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `clave` (`clave`);
+
+--
 -- Indices de la tabla `personajes`
 --
 ALTER TABLE `personajes`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `nombre` (`nombre`);
+
+--
+-- Indices de la tabla `rol_permisos`
+--
+ALTER TABLE `rol_permisos`
+  ADD PRIMARY KEY (`rol_id`,`permiso_id`),
+  ADD KEY `fk_rol_permisos_permiso` (`permiso_id`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -121,6 +221,13 @@ ALTER TABLE `personajes`
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`);
+
+--
+-- Indices de la tabla `usuario_roles`
+--
+ALTER TABLE `usuario_roles`
+  ADD PRIMARY KEY (`usuario_id`,`rol_id`),
+  ADD KEY `fk_usuario_roles_rol` (`rol_id`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -133,10 +240,22 @@ ALTER TABLE `habilidades`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
+-- AUTO_INCREMENT de la tabla `permisos`
+--
+ALTER TABLE `permisos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de la tabla `personajes`
 --
 ALTER TABLE `personajes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -153,6 +272,20 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `habilidades`
   ADD CONSTRAINT `fk_habilidad_personaje` FOREIGN KEY (`personaje_id`) REFERENCES `personajes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `rol_permisos`
+--
+ALTER TABLE `rol_permisos`
+  ADD CONSTRAINT `fk_rol_permisos_permiso` FOREIGN KEY (`permiso_id`) REFERENCES `permisos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_rol_permisos_rol` FOREIGN KEY (`rol_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `usuario_roles`
+--
+ALTER TABLE `usuario_roles`
+  ADD CONSTRAINT `fk_usuario_roles_rol` FOREIGN KEY (`rol_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_usuario_roles_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -19,6 +19,10 @@
         <div class="alert alert-success">
             Sesión autenticada como <strong><%= authUser.username %></strong>.
         </div>
+        <div class="alert alert-dark border">
+            <p class="mb-1"><strong>Roles:</strong> <%= userRoles.length ? userRoles.join(", ") : "Sin roles asignados" %></p>
+            <p class="mb-0"><strong>Permisos:</strong> <%= userPermissions.length ? userPermissions.join(", ") : "Sin permisos asignados" %></p>
+        </div>
     <% } else if (nombreSesion) { %>
         <div class="alert alert-secondary">
             Hay una sesión activa guardada con el nombre <strong><%= nombreSesion %></strong>.
@@ -36,6 +40,10 @@
     <% if (!isAuthenticated) { %>
         <a href="/users/login" class="btn btn-primary mb-3">Iniciar sesión</a>
         <a href="/users/signup" class="btn btn-outline-light mb-3">Registrar usuario</a>
+    <% } %>
+
+    <% if (hasPermission("rbac_ver")) { %>
+        <a href="/admin/rbac" class="btn btn-warning mb-3">Administrar roles y permisos</a>
     <% } %>
 
     <% if (isAuthenticated || nombreSesion || personajeCookie !== "No definido") { %>

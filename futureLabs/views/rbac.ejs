@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<%- include("includes/head") %>
+<body class="bg-dark text-light">
+<%- include("includes/navbar") %>
+
+<div class="container py-4">
+    <h1>Panel RBAC</h1>
+    <p class="text-light-emphasis">
+        Aquí puedes ver los roles y permisos efectivos de cada usuario, y actualizar sus asignaciones.
+    </p>
+
+    <% if (successMessage) { %>
+        <div class="alert alert-success"><%= successMessage %></div>
+    <% } %>
+
+    <% if (errorMessage) { %>
+        <div class="alert alert-danger"><%= errorMessage %></div>
+    <% } %>
+
+    <div class="card bg-secondary text-light mb-4">
+        <div class="card-body">
+            <h4 class="card-title">Roles disponibles</h4>
+            <ul class="mb-0">
+                <% roles.forEach(role => { %>
+                    <li>
+                        <strong><%= role.nombre %></strong>:
+                        <%= role.descripcion %>
+                    </li>
+                <% }) %>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <% users.forEach(user => { %>
+            <div class="col-lg-6 mb-4">
+                <div class="card bg-secondary text-light h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= user.username %></h5>
+                        <p class="mb-1"><strong>Roles actuales:</strong> <%= user.roles %></p>
+                        <p class="mb-3"><strong>Permisos efectivos:</strong> <%= user.permisos %></p>
+
+                        <form action="/admin/rbac/roles" method="POST">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <input type="hidden" name="userId" value="<%= user.id %>">
+
+                            <div class="mb-3">
+                                <label class="form-label">Asignar roles</label>
+                                <% roles.forEach(role => { %>
+                                    <div class="form-check">
+                                        <input
+                                            class="form-check-input"
+                                            type="checkbox"
+                                            name="roleIds"
+                                            value="<%= role.id %>"
+                                            id="user-<%= user.id %>-role-<%= role.id %>"
+                                            <%= user.roleIds.includes(role.id) ? "checked" : "" %>
+                                        >
+                                        <label class="form-check-label" for="user-<%= user.id %>-role-<%= role.id %>">
+                                            <strong><%= role.nombre %></strong> - <%= role.descripcion %>
+                                        </label>
+                                    </div>
+                                <% }) %>
+                            </div>
+
+                            <% if (hasPermission("rbac_asignar_roles")) { %>
+                                <button type="submit" class="btn btn-warning">Guardar roles</button>
+                            <% } %>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</div>
+
+<%- include("includes/footer") %>
+</body>
+</html>

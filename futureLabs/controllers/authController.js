@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs");
 
+const RbacModel = require("../models/rbacModel");
 const UserModel = require("../models/userModel");
 
 const clearAuthMessages = (req) => {
@@ -108,14 +109,23 @@ exports.postSignup = (req, res) => {
 
             const user = new UserModel(username, password);
 
-            return user.save()
-                .then(() => {
-                    req.session.authSuccess = "Usuario registrado correctamente. Ahora puedes iniciar sesión.";
-                    req.session.oldInput = { username };
+            return UserModel.countAll()
+                .then(([countRows]) => {
+                    const totalUsers = countRows[0].total;
+                    const defaultRole = totalUsers === 0 ? "admin" : "viewer";
 
-                    return req.session.save(() => {
-                        res.redirect("/users/login");
-                    });
+                    return user.save()
+                        .then(([result]) => {
+                            return RbacModel.assignRoleToUser(result.insertId, defaultRole)
+                                .then(() => {
+                                    req.session.authSuccess = `Usuario registrado correctamente. Rol inicial asignado: ${defaultRole}. Ahora puedes iniciar sesión.`;
+                                    req.session.oldInput = { username };
+
+                                    return req.session.save(() => {
+                                        res.redirect("/users/login");
+                                    });
+                                });
+                        });
                 });
         })
         .catch(err => {
@@ -167,16 +177,24 @@ exports.postLogin = (req, res) => {
                         );
                     }
 
-                    req.session.isLoggedIn = true;
-                    req.session.user = {
-                        id: user.id,
-                        username: user.username
-                    };
-                    req.session.nombreUsuario = user.username;
+                    return Promise.all([
+                        RbacModel.findRolesByUserId(user.id),
+                        RbacModel.findPermissionsByUserId(user.id)
+                    ])
+                        .then(([[roleRows], [permissionRows]]) => {
+                            req.session.isLoggedIn = true;
+                            req.session.user = {
+                                id: user.id,
+                                username: user.username,
+                                roles: roleRows.map(role => role.nombre),
+                                permissions: permissionRows.map(permission => permission.clave)
+                            };
+                            req.session.nombreUsuario = user.username;
 
-                    return req.session.save(() => {
-                        res.redirect("/inicio");
-                    });
+                            return req.session.save(() => {
+                                res.redirect("/inicio");
+                            });
+                        });
                 });
         })
         .catch(err => {

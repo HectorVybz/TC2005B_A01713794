@@ -173,6 +173,40 @@
         </p>
     </div>
 
+    <hr>
+
+    <h3>Lab 19 - Role Based Access Control (RBAC)</h3>
+
+    <div class="mb-4">
+        <h5>1. ¿En qué consiste el control de acceso basado en roles?</h5>
+        <p>
+            El control de acceso basado en roles consiste en asignar permisos a distintos roles dentro del sistema
+            y después relacionar a cada usuario con uno o varios de esos roles.
+        </p>
+        <p>
+            En lugar de decidir permiso por permiso para cada usuario, se define por ejemplo un rol
+            <strong>admin</strong>, un rol <strong>editor</strong> y un rol <strong>viewer</strong>. Después,
+            cada usuario hereda automáticamente los permisos de los roles que tenga asignados. Esto hace que la
+            administración del acceso sea más clara, escalable y fácil de mantener.
+        </p>
+    </div>
+
+    <div class="mb-4">
+        <h5>2. Investiguen y describan 2 sistemas, uno que aplique RBAC y uno que no. Realicen un análisis de ventajas y desventajas de cada uno con respecto al control de acceso.</h5>
+        <p>
+            Un ejemplo de sistema que aplica RBAC es un <strong>panel administrativo empresarial</strong>, donde
+            existen roles como administrador, editor y lector. La ventaja es que el acceso se controla de manera
+            ordenada y se pueden cambiar permisos para grupos completos de usuarios. La desventaja es que requiere
+            diseñar bien los roles para que no se vuelvan demasiado amplios o confusos.
+        </p>
+        <p>
+            Un ejemplo de sistema que no aplica RBAC sería una <strong>aplicación pequeña donde todos los usuarios
+            autenticados tienen exactamente las mismas acciones</strong>. La ventaja es que la implementación es más
+            simple y rápida. La desventaja es que no permite diferenciar niveles de acceso, por lo que resulta poco
+            flexible y menos segura cuando el sistema crece o cuando se necesita restringir acciones específicas.
+        </p>
+    </div>
+
 </div>
 
 <%- include("includes/footer") %>

@@ -18,10 +18,21 @@ module.exports = class UserModel {
             });
     }
 
+    static countAll() {
+        return db.execute("SELECT COUNT(*) AS total FROM usuarios");
+    }
+
     static findByUsername(username) {
         return db.execute(
             "SELECT * FROM usuarios WHERE username = ?",
             [username]
+        );
+    }
+
+    static findById(id) {
+        return db.execute(
+            "SELECT * FROM usuarios WHERE id = ?",
+            [id]
         );
     }
 };

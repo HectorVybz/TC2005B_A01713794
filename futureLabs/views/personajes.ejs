@@ -7,13 +7,15 @@
 <div class="container py-4">
     <h1>Personajes</h1>
 
-    <% if (isAuthenticated) { %>
+    <% if (hasPermission("personajes_crear")) { %>
         <a href="/personajes/nuevo" class="btn btn-success mb-4">Agregar personaje</a>
     <% } else { %>
         <div class="alert alert-warning">
-            Inicia sesión para agregar o editar personajes. La lista sigue siendo pública, pero las rutas de modificación están protegidas.
+            Solo los usuarios con permiso para crear o editar personajes pueden modificar esta sección. La lista sigue siendo pública.
         </div>
-        <a href="/users/login" class="btn btn-outline-light mb-4">Ir al login</a>
+        <% if (!isAuthenticated) { %>
+            <a href="/users/login" class="btn btn-outline-light mb-4">Ir al login</a>
+        <% } %>
     <% } %>
 
     <div class="row">
@@ -26,7 +28,7 @@
                         <p class="card-text"><%= personaje.descripcion %></p>
 
                         <a href="/personajes/<%= personaje.id %>" class="btn btn-primary btn-sm">Ver detalle</a>
-                        <% if (isAuthenticated) { %>
+                        <% if (hasPermission("personajes_editar")) { %>
                             <a href="/personajes/editar/<%= personaje.id %>" class="btn btn-warning btn-sm">Editar</a>
                         <% } %>
                     </div>
