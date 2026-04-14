@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+
+<%- include("includes/head") %>
+
+<body class="bg-dark text-light">
+<%- include("includes/navbar") %>
+
+<div class="container py-4">
+    <h1>Galería</h1>
+    <p>Imágenes de personajes y facciones de Honkai: Star Rail.</p>
+
+    <h3 class="mt-4">Personajes</h3>
+    <div class="row">
+        <% personajes.forEach(personaje => { %>
+            <div class="col-md-4 mb-4">
+                <div class="card bg-secondary text-light h-100">
+                    <img src="/images/<%= personaje.img %>" class="card-img-top" alt="<%= personaje.nombre %>">
+                    <div class="card-body">
+                        <h5><%= personaje.nombre %></h5>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+
+    <hr class="my-4">
+
+    <h3>Facciones</h3>
+    <div class="row">
+        <% facciones.forEach(faccion => { %>
+            <div class="col-md-6 mb-4">
+                <div class="card bg-secondary text-light h-100">
+                    <img src="/images/<%= faccion.img %>" class="card-img-top" alt="<%= faccion.nombre %>">
+                    <div class="card-body">
+                        <h5><%= faccion.nombre %></h5>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</div>
+
+<%- include("includes/footer") %>
+</body>
+</html>

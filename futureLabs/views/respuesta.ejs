@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+
+<%- include("includes/head") %>
+
+<body class="bg-dark text-light">
+
+<%- include("includes/navbar") %>
+
+<div class="container py-4">
+    <h1>Respuesta enviada</h1>
+    <p>Los datos del formulario fueron recibidos correctamente.</p>
+
+    <div class="card bg-secondary text-light mt-3">
+        <div class="card-body">
+            <h4 class="card-title">Datos recibidos</h4>
+            <p><strong>Nombre:</strong> <%= nombre %></p>
+            <p><strong>Personaje favorito:</strong> <%= personaje %></p>
+            <p><strong>Mensaje:</strong> <%= mensaje %></p>
+        </div>
+    </div>
+
+    <div class="alert alert-warning mt-3">
+        El nombre se guardó en sesión y el personaje favorito en una cookie.
+    </div>
+
+    <a href="/inicio" class="btn btn-primary mt-3">Ir al inicio</a>
+</div>
+
+<%- include("includes/footer") %>
+
+</body>
+</html>

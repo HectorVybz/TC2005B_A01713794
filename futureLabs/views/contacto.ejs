@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+
+<%- include("includes/head") %>
+
+<body class="bg-dark text-light">
+
+<%- include("includes/navbar") %>
+
+<div class="container py-4">
+    <h1>Contacto</h1>
+    <p>
+        Esta forma envía datos por POST y el servidor los despliega en una página dinámica con EJS.
+    </p>
+
+    <form action="/enviar" method="POST">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" id="nombre" name="nombre" class="form-control" required>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label for="personaje" class="form-label">Personaje favorito</label>
+                <select id="personaje" name="personaje" class="form-select" required>
+                    <option value="">Selecciona uno</option>
+                    <option value="Kafka">Kafka</option>
+                    <option value="Acheron">Acheron</option>
+                    <option value="Jingliu">Jingliu</option>
+                    <option value="Dan Heng IL">Dan Heng IL</option>
+                    <option value="Trailblazer">Trailblazer</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="mensaje" class="form-label">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" class="form-control" rows="4" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+</div>
+
+<%- include("includes/footer") %>
+
+</body>
+</html>

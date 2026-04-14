@@ -1,0 +1,22 @@
+{
+  "name": "futurelabs",
+  "version": "1.0.0",
+  "description": "Lab 11 con Express basado en Honkai Star Rail",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node --watch app.js"
+  },
+  "keywords": [],
+  "author": "Hector Alejandro Barron Tamayo",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "csurf": "^1.11.0",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-session": "^1.19.0",
+    "mysql2": "^3.20.0"
+  }
+}

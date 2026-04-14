@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<%- include("includes/head") %>
+<body class="bg-dark text-light">
+<%- include("includes/navbar") %>
+
+<div class="container py-4">
+    <h1>Editar personaje</h1>
+    <p class="text-light-emphasis">Esta ruta está protegida y requiere autenticación.</p>
+
+    <form action="/personajes/editar" method="POST">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <input type="hidden" name="id" value="<%= personaje.id %>">
+
+        <div class="mb-3">
+            <label class="form-label">Nombre</label>
+            <input type="text" name="nombre" class="form-control" value="<%= personaje.nombre %>" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Imagen</label>
+            <input type="text" name="img" class="form-control" value="<%= personaje.img %>" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Descripción</label>
+            <textarea name="descripcion" class="form-control" rows="4" required><%= personaje.descripcion %></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-warning">Actualizar</button>
+    </form>
+</div>
+
+<%- include("includes/footer") %>
+</body>
+</html>

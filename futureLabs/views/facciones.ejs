@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es">
+
+<%- include("includes/head") %>
+
+<body class="bg-dark text-light">
+<%- include("includes/navbar") %>
+
+<div class="container py-4">
+    <h1>Facciones</h1>
+
+    <div class="row">
+        <% facciones.forEach(faccion => { %>
+            <div class="col-md-6 mb-4">
+                <div class="card bg-secondary text-light h-100">
+                    <img src="/images/<%= faccion.img %>" class="card-img-top" alt="<%= faccion.nombre %>">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= faccion.nombre %></h5>
+                        <p class="card-text"><%= faccion.descripcion %></p>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</div>
+
+<%- include("includes/footer") %>
+</body>
+</html>
