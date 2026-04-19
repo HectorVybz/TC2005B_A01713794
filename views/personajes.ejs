@@ -18,7 +18,25 @@
         <% } %>
     <% } %>
 
-    <div class="row">
+    <section id="personajes-ajax" class="mb-4" data-csrf-token="<%= csrfToken %>" data-can-edit="<%= hasPermission("personajes_editar") ? "true" : "false" %>">
+        <h2 class="h4">Buscador AJAX</h2>
+        <p class="text-light-emphasis">
+            Componente AJAX utilizado: busqueda asincrona de personajes con JSON, fetch y actualizacion parcial de la lista.
+        </p>
+
+        <form id="personajes-search-form" class="row g-2 align-items-end">
+            <div class="col-md-9">
+                <label for="personajes-search" class="form-label">Buscar por nombre</label>
+                <input type="search" id="personajes-search" class="form-control" placeholder="Ejemplo: Kafka">
+            </div>
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-primary w-100">Buscar sin recargar</button>
+            </div>
+        </form>
+        <p id="personajes-search-status" class="text-light-emphasis mt-2" aria-live="polite"></p>
+    </section>
+
+    <div id="personajes-list" class="row">
         <% personajes.forEach(personaje => { %>
             <div class="col-md-4 mb-4">
                 <div class="card bg-secondary text-light h-100">
@@ -39,5 +57,6 @@
 </div>
 
 <%- include("includes/footer") %>
+<script src="/js/personajes-ajax.js"></script>
 </body>
 </html>
