@@ -36,6 +36,26 @@ exports.getPersonajes = (req, res) => {
         });
 };
 
+exports.postBuscarPersonajes = (req, res) => {
+    const termino = (req.body.termino || "").trim();
+
+    PersonajeModel.searchByName(termino)
+        .then(([rows, fieldData]) => {
+            const personajes = rows.map(personaje => ({
+                id: personaje.id,
+                nombre: personaje.nombre,
+                descripcion: personaje.descripcion,
+                imgUrl: res.locals.getImagePath(personaje.img)
+            }));
+
+            res.status(200).json({ personajes });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ message: "No se pudo completar la busqueda asincrona." });
+        });
+};
+
 exports.getPersonajeDetalle = (req, res) => {
     const id = req.params.id;
 

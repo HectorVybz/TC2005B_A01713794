@@ -28,6 +28,11 @@ module.exports = class PersonajeModel {
             .then(getProcedureRows);
     }
 
+    static searchByName(termino) {
+        return db.execute("CALL sp_buscar_personajes(?)", [termino])
+            .then(getProcedureRows);
+    }
+
     static update(id, nombre, img, descripcion) {
         return db.execute(
             "CALL sp_guardar_personaje(?, ?, ?, ?)",

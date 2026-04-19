@@ -45,6 +45,7 @@ router.get("/", (req, res) => {
 
 router.get("/inicio", hsrController.getInicio);
 router.get("/personajes", hsrController.getPersonajes);
+router.post("/personajes/buscar", hsrController.postBuscarPersonajes);
 router.get("/personajes/nuevo", hasPermission("personajes_crear"), hsrController.getNuevoPersonaje);
 router.get("/personajes/editar/:id", hasPermission("personajes_editar"), hsrController.getEditarPersonaje);
 router.get("/personajes/:id", hsrController.getPersonajeDetalle);
