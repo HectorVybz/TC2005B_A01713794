@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="es">
+
+<%- include("includes/head") %>
+
+<body class="bg-dark text-light">
+
+<%- include("includes/navbar") %>
+
+<div class="container py-4">
+
+    <h1>Preguntas de los Laboratorios</h1>
+
+    <hr>
+
+    <h3>Lab 12</h3>
+
+    <div class="mb-4">
+        <h5>1. Describe el archivo package.json</h5>
+        <p>
+            El archivo <strong>package.json</strong> es el archivo de configuración principal de un proyecto de Node.js.
+            Contiene información general del proyecto, como su nombre, versión, descripción, autor y licencia.
+        </p>
+        <p>
+            También define las <strong>dependencias</strong> que necesita la aplicación para funcionar, por ejemplo
+            <strong>Express</strong>, <strong>EJS</strong> y otros paquetes instalados con npm.
+        </p>
+        <p>
+            Además, permite declarar <strong>scripts</strong> como <code>npm start</code>, para ejecutar la aplicación
+            de manera más sencilla. En resumen, package.json organiza la configuración base del proyecto.
+        </p>
+    </div>
+
+    <div class="mb-4">
+        <h5>2. ¿Qué otros templating engines existen para Node?</h5>
+        <p>
+            Además de EJS, existen otros motores de plantillas para Node.js que permiten generar HTML dinámico
+            desde el servidor.
+        </p>
+        <p>Algunos ejemplos son:</p>
+        <ul>
+            <li><strong>Pug</strong></li>
+            <li><strong>Handlebars</strong></li>
+            <li><strong>Mustache</strong></li>
+            <li><strong>Nunjucks</strong></li>
+        </ul>
+        <p>
+            Cada uno tiene su propia sintaxis y estilo, pero todos sirven para separar la lógica del servidor
+            de la presentación en HTML.
+        </p>
+    </div>
+
+    <hr>
+
+    <h3>Lab 13 - Arquitectura MVC</h3>
+
+    <div class="mb-4">
+        <h5>1. ¿Qué beneficios encuentras en el estilo MVC?</h5>
+        <p>
+            El estilo arquitectónico MVC ayuda a organizar mejor la aplicación porque separa las responsabilidades
+            en tres partes: modelo, vista y controlador.
+        </p>
+        <p>
+            El <strong>modelo</strong> administra los datos, la <strong>vista</strong> muestra la interfaz al usuario
+            y el <strong>controlador</strong> maneja la lógica de la aplicación y conecta el modelo con la vista.
+        </p>
+        <p>
+            Esta separación hace que el código sea más claro, más fácil de mantener, reutilizar y modificar,
+            especialmente cuando el proyecto empieza a crecer.
+        </p>
+    </div>
+
+    <div class="mb-4">
+        <h5>2. ¿Encuentras alguna desventaja en el estilo MVC?</h5>
+        <p>
+            Sí. Una desventaja es que al inicio puede parecer más complejo porque requiere dividir el proyecto
+            en más carpetas y archivos, como modelos, controladores y vistas.
+        </p>
+        <p>
+            En aplicaciones pequeñas puede sentirse como una estructura más grande de lo necesario. Sin embargo,
+            cuando la aplicación crece, esta organización resulta muy útil para mantener el código ordenado.
+        </p>
+    </div>
+
+    <hr>
+
+    <h3>Lab 14 - Sesiones y Cookies</h3>
+
+    <div class="mb-4">
+        <h5>1. ¿Qué es una cookie?</h5>
+        <p>
+            Una cookie es un pequeño dato que el servidor envía al navegador y que se almacena del lado del cliente.
+            Después, el navegador la manda de vuelta en futuras peticiones al mismo sitio.
+        </p>
+        <p>
+            Sirve para conservar información sencilla entre solicitudes, como preferencias del usuario o identificadores.
+            En este laboratorio se utilizó para guardar el personaje favorito.
+        </p>
+    </div>
+
+    <div class="mb-4">
+        <h5>2. ¿Qué es una sesión?</h5>
+        <p>
+            Una sesión es un mecanismo para almacenar información del usuario en el servidor entre distintas peticiones.
+            Generalmente se relaciona con una cookie que guarda un identificador de sesión.
+        </p>
+        <p>
+            En este laboratorio se utilizó para guardar el nombre del usuario y poder mostrarlo después en la página
+            de inicio.
+        </p>
+    </div>
+
+    <div class="mb-4">
+        <h5>3. Diferencia entre cookie y sesión</h5>
+        <p>
+            La cookie se guarda en el navegador del usuario, mientras que la sesión se guarda principalmente
+            en el servidor.
+        </p>
+        <p>
+            La cookie suele almacenar información pequeña o identificadores, y la sesión permite manejar datos
+            del usuario de una forma más segura y organizada.
+        </p>
+    </div>
+
+    <hr>
+
+    <h3>Lab 17 - Interacción con la base de datos</h3>
+
+    <div class="mb-4">
+        <h5>1. ¿Qué ventajas tiene escribir el código SQL únicamente en la capa del modelo?</h5>
+        <p>
+            Escribir el código SQL únicamente en la capa del modelo permite separar el acceso a los datos
+            del resto de la lógica de la aplicación. Esto hace que el código sea más ordenado, más fácil
+            de mantener y más reutilizable.
+        </p>
+        <p>
+            En este proyecto, por ejemplo, las consultas de personajes y habilidades pueden quedarse en los
+            modelos, mientras que los controladores solo se encargan de recibir la petición y mandar la
+            información a la vista. Además, si cambia una consulta o la estructura de la base de datos,
+            el cambio se realiza en el modelo sin afectar directamente a las vistas ni a los controladores.
+        </p>
+    </div>
+
+    <div class="mb-4">
+        <h5>2. ¿Qué es SQL injection y cómo se puede prevenir?</h5>
+        <p>
+            SQL injection es un ataque en el que un usuario intenta insertar código SQL malicioso dentro
+            de una consulta para alterar su comportamiento o acceder a información no autorizada.
+        </p>
+        <p>
+            Se puede prevenir usando <strong>consultas parametrizadas</strong> con signos de interrogación,
+            validando la entrada del usuario y evitando concatenar directamente datos recibidos dentro del SQL.
+            En lugar de armar el query con texto, se mandan los valores aparte para que MySQL los trate como
+            datos y no como instrucciones.
+        </p>
+    </div>
+
+    <hr>
+
+    <h3>Lab 18 - Autenticación</h3>
+
+    <div class="mb-4">
+        <h5>1. ¿Qué otras formas de autenticación existen?</h5>
+        <p>
+            Además de la autenticación tradicional con usuario y contraseña almacenada en sesión, existen
+            otras formas comunes de autenticación en aplicaciones web.
+        </p>
+        <p>
+            Algunas opciones son los <strong>tokens JWT</strong>, el inicio de sesión con proveedores externos
+            como <strong>Google o GitHub mediante OAuth</strong>, la <strong>autenticación de dos factores</strong>
+            y métodos biométricos como huella o reconocimiento facial. Cada uno ofrece distintos niveles de
+            seguridad y se elige según las necesidades de la aplicación.
+        </p>
+    </div>
+
+    <hr>
+
+    <h3>Lab 19 - Role Based Access Control (RBAC)</h3>
+
+    <div class="mb-4">
+        <h5>1. ¿En qué consiste el control de acceso basado en roles?</h5>
+        <p>
+            El control de acceso basado en roles consiste en asignar permisos a distintos roles dentro del sistema
+            y después relacionar a cada usuario con uno o varios de esos roles.
+        </p>
+        <p>
+            En lugar de decidir permiso por permiso para cada usuario, se define por ejemplo un rol
+            <strong>admin</strong>, un rol <strong>editor</strong> y un rol <strong>viewer</strong>. Después,
+            cada usuario hereda automáticamente los permisos de los roles que tenga asignados. Esto hace que la
+            administración del acceso sea más clara, escalable y fácil de mantener.
+        </p>
+    </div>
+
+    <div class="mb-4">
+        <h5>2. Investiguen y describan 2 sistemas, uno que aplique RBAC y uno que no. Realicen un análisis de ventajas y desventajas de cada uno con respecto al control de acceso.</h5>
+        <p>
+            Un ejemplo de sistema que aplica RBAC es un <strong>panel administrativo empresarial</strong>, donde
+            existen roles como administrador, editor y lector. La ventaja es que el acceso se controla de manera
+            ordenada y se pueden cambiar permisos para grupos completos de usuarios. La desventaja es que requiere
+            diseñar bien los roles para que no se vuelvan demasiado amplios o confusos.
+        </p>
+        <p>
+            Un ejemplo de sistema que no aplica RBAC sería una <strong>aplicación pequeña donde todos los usuarios
+            autenticados tienen exactamente las mismas acciones</strong>. La ventaja es que la implementación es más
+            simple y rápida. La desventaja es que no permite diferenciar niveles de acceso, por lo que resulta poco
+            flexible y menos segura cuando el sistema crece o cuando se necesita restringir acciones específicas.
+        </p>
+    </div>
+
+    <hr>
+
+    <h3>Lab 23 - Stored Procedures</h3>
+
+    <div class="mb-4">
+        <h5>1. ¿Qué desventajas identificas en la utilización de stored procedures?</h5>
+        <p>
+            Una desventaja es que parte de la lógica queda dentro de la base de datos, por lo que puede ser
+            más difícil de versionar, probar y revisar junto con el resto del código de la aplicación.
+        </p>
+        <p>
+            También pueden hacer que el proyecto dependa más de un motor específico de base de datos. Si después
+            se cambia de MySQL a otro sistema, los procedimientos almacenados podrían necesitar ajustes importantes.
+        </p>
+        <p>
+            Aun así, en este laboratorio ayudan a centralizar consultas repetidas de personajes y a reducir la
+            cantidad de SQL directo escrito en el modelo.
+        </p>
+    </div>
+
+</div>
+
+<%- include("includes/footer") %>
+
+</body>
+</html>
