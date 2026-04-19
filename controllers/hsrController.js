@@ -59,13 +59,19 @@ exports.postBuscarPersonajes = (req, res) => {
 exports.getPersonajeDetalle = (req, res) => {
     const id = req.params.id;
 
-    PersonajeModel.fetchOne(id)
-        .then(([rows, fieldData]) => {
+    Promise.all([
+        PersonajeModel.fetchOne(id),
+        PersonajeModel.fetchHabilidades(id)
+    ])
+        .then(([[rows], [habilidades]]) => {
             if (rows.length === 0) {
                 return res.status(404).render("404");
             }
 
-            res.render("detallePersonaje", { personaje: rows[0] });
+            res.render("detallePersonaje", {
+                personaje: rows[0],
+                habilidades
+            });
         })
         .catch(err => {
             return handleDbError(res, err);
@@ -80,14 +86,26 @@ exports.postNuevoPersonaje = (req, res) => {
     const nombre = req.body.nombre;
     const img = req.file ? "uploads/" + req.file.filename : "";
     const descripcion = req.body.descripcion;
+    const habilidad = {
+        nombre: req.body.habilidadNombre,
+        tipo: req.body.habilidadTipo,
+        descripcion: req.body.habilidadDescripcion,
+        danoBase: Number(req.body.danoBase || 0),
+        costoEnergia: Number(req.body.costoEnergia || 0),
+        nivelRequerido: Number(req.body.nivelRequerido || 1)
+    };
 
     if (!img) {
         return res.status(400).send("Selecciona una imagen para crear el personaje.");
     }
 
+    if (!habilidad.nombre || !habilidad.tipo || !habilidad.descripcion) {
+        return res.status(400).send("Captura la habilidad inicial para crear el personaje con transaccion.");
+    }
+
     const personaje = new PersonajeModel(nombre, img, descripcion);
 
-    personaje.save()
+    personaje.saveWithInitialAbility(habilidad)
         .then(() => {
             res.redirect("/personajes");
         })

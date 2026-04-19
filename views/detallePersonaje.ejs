@@ -11,6 +11,27 @@
         <img src="<%= getImagePath(personaje.img) %>" class="card-img-top" alt="<%= personaje.nombre %>">
         <div class="card-body">
             <p><%= personaje.descripcion %></p>
+
+            <h2 class="h4 mt-4">Habilidades</h2>
+            <% if (habilidades.length === 0) { %>
+                <p class="text-light-emphasis">Este personaje todavia no tiene habilidades registradas.</p>
+            <% } else { %>
+                <div class="list-group mb-4">
+                    <% habilidades.forEach(habilidad => { %>
+                        <div class="list-group-item bg-dark text-light border-secondary">
+                            <h3 class="h5 mb-1"><%= habilidad.nombre %></h3>
+                            <p class="mb-1"><%= habilidad.descripcion %></p>
+                            <small>
+                                Tipo: <%= habilidad.tipo %> |
+                                Daño base: <%= habilidad.dano_base %> |
+                                Energía: <%= habilidad.costo_energia %> |
+                                Nivel: <%= habilidad.nivel_requerido %>
+                            </small>
+                        </div>
+                    <% }) %>
+                </div>
+            <% } %>
+
             <% if (hasPermission("personajes_editar")) { %>
                 <a href="/personajes/editar/<%= personaje.id %>" class="btn btn-warning">Editar personaje</a>
             <% } else if (!isAuthenticated) { %>
