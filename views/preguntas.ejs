@@ -269,6 +269,33 @@
         </p>
     </div>
 
+    <hr>
+
+    <h3>Lab 25 - Transacciones</h3>
+
+    <div class="mb-4">
+        <h5>1. ¿Qué es una transacción?</h5>
+        <p>
+            Una transacción es un conjunto de operaciones que se ejecutan como una sola unidad lógica de trabajo.
+            Si todas las operaciones terminan correctamente, se confirma con <strong>COMMIT</strong>; si alguna falla,
+            se deshacen los cambios con <strong>ROLLBACK</strong>.
+        </p>
+        <p>
+            En este proyecto se usa una transacción al crear un personaje: primero se guarda el personaje y después
+            su habilidad inicial. Si no se puede guardar la habilidad, tampoco se conserva el personaje nuevo.
+        </p>
+    </div>
+
+    <div class="mb-4">
+        <h5>2. ¿Qué significan las propiedades ACID?</h5>
+        <p>
+            <strong>Atomicidad</strong> significa que la transacción se completa entera o no se aplica nada.
+            <strong>Coherencia</strong> asegura que la base de datos pase de un estado válido a otro.
+            <strong>Aislamiento</strong> evita que transacciones simultáneas interfieran entre sí.
+            <strong>Durabilidad</strong> indica que los cambios confirmados permanecen guardados.
+        </p>
+    </div>
+
 </div>
 
 <%- include("includes/footer") %>
