@@ -227,6 +227,48 @@
         </p>
     </div>
 
+    <hr>
+
+    <h3>Lab 24 - AJAX</h3>
+
+    <div class="mb-4">
+        <h5>1. ¿Qué importancia tiene AJAX en el desarrollo de RIAs?</h5>
+        <p>
+            AJAX es importante en las RIAs porque permite actualizar partes específicas de una página sin recargarla
+            completa. Esto hace que la interacción sea más rápida y parecida a una aplicación de escritorio.
+        </p>
+        <p>
+            En este proyecto se usó en el buscador de personajes: el navegador manda el texto al servidor, recibe
+            una respuesta en JSON y actualiza la lista de personajes de forma asíncrona.
+        </p>
+    </div>
+
+    <div class="mb-4">
+        <h5>2. ¿Qué implicaciones de seguridad tiene AJAX? ¿Dónde deben hacerse las validaciones?</h5>
+        <p>
+            AJAX no elimina los riesgos de seguridad; al contrario, expone rutas que también deben protegerse.
+            Es importante validar permisos, tokens CSRF, tipos de datos y tamaño de la información recibida.
+        </p>
+        <p>
+            Las validaciones pueden hacerse del lado del cliente para mejorar la experiencia del usuario, pero
+            las validaciones obligatorias siempre deben hacerse en el servidor, porque el cliente puede modificarse
+            desde el navegador.
+        </p>
+    </div>
+
+    <div class="mb-4">
+        <h5>3. ¿Qué es JSON?</h5>
+        <p>
+            JSON es un formato ligero para representar datos con pares llave-valor, arreglos, cadenas, números,
+            booleanos y objetos. Se usa mucho en aplicaciones web porque JavaScript puede leerlo y generarlo con
+            facilidad.
+        </p>
+        <p>
+            En una petición AJAX, JSON permite que el navegador y el servidor intercambien datos estructurados sin
+            enviar una página HTML completa.
+        </p>
+    </div>
+
 </div>
 
 <%- include("includes/footer") %>
