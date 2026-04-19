@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<%- include("includes/head") %>
+<body class="bg-dark text-light">
+<%- include("includes/navbar") %>
+
+<div class="container py-4">
+    <h1>Nuevo personaje</h1>
+    <p class="text-light-emphasis">Esta ruta está protegida y solo puede usarse con una sesión autenticada.</p>
+
+    <form action="/personajes/nuevo?_csrf=<%= csrfToken %>" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+        <div class="mb-3">
+            <label class="form-label">Nombre</label>
+            <input type="text" name="nombre" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Imagen</label>
+            <input type="file" name="img" class="form-control" accept="image/png, image/jpeg, image/webp, image/gif" required>
+            <div class="form-text text-light-emphasis">Sube una imagen JPG, PNG, WEBP o GIF de maximo 2 MB.</div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Descripción</label>
+            <textarea name="descripcion" class="form-control" rows="4" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-success">Guardar</button>
+    </form>
+</div>
+
+<%- include("includes/footer") %>
+</body>
+</html>
