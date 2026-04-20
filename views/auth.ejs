@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es">
+<%- include("includes/head") %>
+<body class="bg-dark text-light">
+<%- include("includes/navbar") %>
+
+<div class="container py-4" style="max-width: 720px;">
+    <h1><%= pageTitle %></h1>
+
+    <p class="text-light-emphasis">
+        <% if (isNew) { %>
+            Registra un usuario nuevo. La contraseña se cifra con bcrypt antes de guardarse en la base de datos.
+        <% } else { %>
+            Inicia sesión para acceder a las rutas protegidas y administrar personajes.
+        <% } %>
+    </p>
+
+    <% if (errorMessage) { %>
+        <div class="alert alert-danger"><%= errorMessage %></div>
+    <% } %>
+
+    <% if (successMessage) { %>
+        <div class="alert alert-success"><%= successMessage %></div>
+    <% } %>
+
+    <div class="card bg-secondary text-light">
+        <div class="card-body">
+            <form action="<%= isNew ? '/users/signup' : '/users/login' %>" method="POST">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+                <div class="mb-3">
+                    <label for="username" class="form-label">Usuario</label>
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        class="form-control"
+                        value="<%= oldInput && oldInput.username ? oldInput.username : '' %>"
+                        required
+                    >
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input type="password" id="password" name="password" class="form-control" required>
+                </div>
+
+                <% if (isNew) { %>
+                    <div class="mb-3">
+                        <label for="confirmPassword" class="form-label">Confirmar contraseña</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" required>
+                    </div>
+                <% } %>
+
+                <button type="submit" class="btn btn-primary">
+                    <%= isNew ? 'Registrar usuario' : 'Iniciar sesión' %>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <% if (isNew) { %>
+            <span>¿Ya tienes cuenta?</span>
+            <a href="/users/login" class="btn btn-link text-info">Ir al login</a>
+        <% } else { %>
+            <span>¿Todavía no tienes cuenta?</span>
+            <a href="/users/signup" class="btn btn-link text-info">Crear usuario</a>
+        <% } %>
+    </div>
+</div>
+
+<%- include("includes/footer") %>
+</body>
+</html>
