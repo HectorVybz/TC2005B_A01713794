@@ -1,25 +1,23 @@
 {
-  "name": "tc2005b_a01713794",
+  "name": "futurelabs",
   "version": "1.0.0",
-  "description": "Labs de clase",
-  "homepage": "https://github.com/HectorVybz/TC2005B_A01713794#readme",
-  "bugs": {
-    "url": "https://github.com/HectorVybz/TC2005B_A01713794/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/HectorVybz/TC2005B_A01713794.git"
-  },
-  "license": "ISC",
-  "author": "Hector Alejandro Barron Tamayo",
-  "type": "commonjs",
+  "description": "Lab 11 con Express basado en Honkai Star Rail",
   "main": "app.js",
   "scripts": {
-    "start": "node --watch app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "dev": "node --watch app.js"
   },
+  "keywords": [],
+  "author": "Hector Alejandro Barron Tamayo",
+  "license": "ISC",
+  "type": "commonjs",
   "dependencies": {
-    "express": "^5.2.1",
-    "express-session": "^1.19.0"
+    "bcryptjs": "^3.0.3",
+    "csurf": "^1.11.0",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-session": "^1.19.0",
+    "multer": "^2.1.1",
+    "mysql2": "^3.20.0"
   }
 }

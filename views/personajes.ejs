@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+<%- include("includes/head") %>
+<body class="bg-dark text-light">
+<%- include("includes/navbar") %>
+
+<div class="container py-4">
+    <h1>Personajes</h1>
+
+    <% if (hasPermission("personajes_crear")) { %>
+        <a href="/personajes/nuevo" class="btn btn-success mb-4">Agregar personaje</a>
+    <% } else { %>
+        <div class="alert alert-warning">
+            Solo los usuarios con permiso para crear o editar personajes pueden modificar esta sección. La lista sigue siendo pública.
+        </div>
+        <% if (!isAuthenticated) { %>
+            <a href="/users/login" class="btn btn-outline-light mb-4">Ir al login</a>
+        <% } %>
+    <% } %>
+
+    <section id="personajes-ajax" class="mb-4" data-csrf-token="<%= csrfToken %>" data-can-edit="<%= hasPermission("personajes_editar") ? "true" : "false" %>">
+        <h2 class="h4">Buscador AJAX</h2>
+        <p class="text-light-emphasis">
+            Componente AJAX utilizado: busqueda asincrona de personajes con JSON, fetch y actualizacion parcial de la lista.
+        </p>
+
+        <form id="personajes-search-form" class="row g-2 align-items-end">
+            <div class="col-md-9">
+                <label for="personajes-search" class="form-label">Buscar por nombre</label>
+                <input type="search" id="personajes-search" class="form-control" placeholder="Ejemplo: Kafka">
+            </div>
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-primary w-100">Buscar sin recargar</button>
+            </div>
+        </form>
+        <p id="personajes-search-status" class="text-light-emphasis mt-2" aria-live="polite"></p>
+    </section>
+
+    <div id="personajes-list" class="row">
+        <% personajes.forEach(personaje => { %>
+            <div class="col-md-4 mb-4">
+                <div class="card bg-secondary text-light h-100">
+                    <img src="<%= getImagePath(personaje.img) %>" class="card-img-top" alt="<%= personaje.nombre %>">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= personaje.nombre %></h5>
+                        <p class="card-text"><%= personaje.descripcion %></p>
+
+                        <a href="/personajes/<%= personaje.id %>" class="btn btn-primary btn-sm">Ver detalle</a>
+                        <% if (hasPermission("personajes_editar")) { %>
+                            <a href="/personajes/editar/<%= personaje.id %>" class="btn btn-warning btn-sm">Editar</a>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</div>
+
+<%- include("includes/footer") %>
+<script src="/js/personajes-ajax.js"></script>
+</body>
+</html>
