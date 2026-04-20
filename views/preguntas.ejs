@@ -319,6 +319,41 @@
         </p>
     </div>
 
+    <hr>
+
+    <h3>Lab 28 - Triggers</h3>
+
+    <div class="mb-4">
+        <h5>1. ¿Qué utilidad tiene un trigger?</h5>
+        <p>
+            Un trigger permite ejecutar lógica automáticamente cuando ocurre una operación en una tabla, como un
+            INSERT, UPDATE o DELETE. Su ventaja es que ayuda a mantener reglas importantes directamente en la base
+            de datos, aunque la operación venga desde distintas partes de la aplicación.
+        </p>
+        <p>
+            En este proyecto se usa un trigger para normalizar valores de habilidades antes de insertarlas y otro
+            para registrar una auditoría después de crear una habilidad.
+        </p>
+    </div>
+
+    <div class="mb-4">
+        <h5>2. Tipos de triggers</h5>
+        <p>
+            Los triggers se pueden clasificar por momento y por evento. Por momento pueden ser <strong>BEFORE</strong>
+            o <strong>AFTER</strong>; por evento pueden ejecutarse en <strong>INSERT</strong>, <strong>UPDATE</strong>
+            o <strong>DELETE</strong>.
+        </p>
+    </div>
+
+    <div class="mb-4">
+        <h5>3. ¿En qué casos no son de utilidad?</h5>
+        <p>
+            No son tan útiles cuando la lógica debe ser visible y controlada por la aplicación, cuando requieren
+            procesos externos complejos o cuando pueden ocultar demasiado comportamiento dentro de la base de datos.
+            Si se abusa de ellos, depurar errores puede volverse más difícil.
+        </p>
+    </div>
+
 </div>
 
 <%- include("includes/footer") %>
