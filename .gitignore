@@ -2,3 +2,5 @@
 node_modules
 uploads/*
 !uploads/index.html
+futureLabs.rar
+util/hsr_express.sql
