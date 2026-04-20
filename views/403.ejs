@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="es">
+<%- include("includes/head") %>
+<body class="bg-dark text-light">
+<%- include("includes/navbar") %>
+
+<div class="container py-4">
+    <h1>Acceso no permitido</h1>
+    <div class="alert alert-danger">
+        <%= errorMessage || "No tienes permiso para acceder a este recurso." %>
+    </div>
+    <a href="/inicio" class="btn btn-primary">Volver al inicio</a>
+</div>
+
+<%- include("includes/footer") %>
+</body>
+</html>
