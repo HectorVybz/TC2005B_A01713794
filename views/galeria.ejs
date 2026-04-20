@@ -10,6 +10,18 @@
     <h1>Galería</h1>
     <p>Imágenes de personajes y facciones de Honkai: Star Rail.</p>
 
+    <section id="vimeo-service" class="mb-4">
+        <h2 class="h4">Servicio web: Vimeo</h2>
+        <p class="text-light-emphasis">
+            Video destacado cargado desde el servicio oEmbed de Vimeo.
+        </p>
+        <div id="vimeo-status" class="text-light-emphasis" aria-live="polite">Consultando Vimeo...</div>
+        <div id="vimeo-video" class="ratio ratio-16x9 mt-3 d-none"></div>
+        <div id="vimeo-meta" class="mt-2"></div>
+    </section>
+
+    <hr class="my-4">
+
     <h3 class="mt-4">Personajes</h3>
     <div class="row">
         <% personajes.forEach(personaje => { %>
@@ -42,5 +54,6 @@
 </div>
 
 <%- include("includes/footer") %>
+<script src="/js/vimeo-service.js"></script>
 </body>
 </html>
