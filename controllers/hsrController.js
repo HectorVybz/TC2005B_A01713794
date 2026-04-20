@@ -1,4 +1,5 @@
 const PersonajeModel = require("../models/personajeModel");
+const VimeoService = require("../services/vimeoService");
 
 const handleDbError = (res, err) => {
     console.log(err);
@@ -186,6 +187,17 @@ exports.getGaleria = (req, res) => {
         })
         .catch(err => {
             return handleDbError(res, err);
+        });
+};
+
+exports.getVideoDestacado = (req, res) => {
+    VimeoService.fetchFeaturedVideo()
+        .then(video => {
+            res.status(200).json({ video });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ message: "No se pudo consultar el servicio de Vimeo." });
         });
 };
 

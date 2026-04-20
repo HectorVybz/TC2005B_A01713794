@@ -51,6 +51,7 @@ router.get("/personajes/editar/:id", hasPermission("personajes_editar"), hsrCont
 router.get("/personajes/:id", hsrController.getPersonajeDetalle);
 router.get("/facciones", hsrController.getFacciones);
 router.get("/galeria", hsrController.getGaleria);
+router.get("/servicios/video-destacado", hsrController.getVideoDestacado);
 router.get("/preguntas", hsrController.getPreguntas);
 
 router.post("/personajes/nuevo", hasPermission("personajes_crear"), upload.single("img"), hsrController.postNuevoPersonaje);
