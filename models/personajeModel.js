@@ -72,10 +72,21 @@ module.exports = class PersonajeModel {
 
     static fetchHabilidades(id) {
         return db.execute(
-            `SELECT nombre, tipo, descripcion, dano_base, costo_energia, nivel_requerido
+            `SELECT id, nombre, tipo, descripcion, dano_base, costo_energia, nivel_requerido
             FROM habilidades
             WHERE personaje_id = ?
             ORDER BY nivel_requerido, id`,
+            [id]
+        );
+    }
+
+    static fetchAuditoriaHabilidades(id) {
+        return db.execute(
+            `SELECT accion, detalle, created_at
+            FROM auditoria_habilidades
+            WHERE personaje_id = ?
+            ORDER BY created_at DESC, id DESC
+            LIMIT 5`,
             [id]
         );
     }

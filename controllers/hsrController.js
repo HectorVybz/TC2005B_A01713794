@@ -62,16 +62,18 @@ exports.getPersonajeDetalle = (req, res) => {
 
     Promise.all([
         PersonajeModel.fetchOne(id),
-        PersonajeModel.fetchHabilidades(id)
+        PersonajeModel.fetchHabilidades(id),
+        PersonajeModel.fetchAuditoriaHabilidades(id)
     ])
-        .then(([[rows], [habilidades]]) => {
+        .then(([[rows], [habilidades], [auditoriaHabilidades]]) => {
             if (rows.length === 0) {
                 return res.status(404).render("404");
             }
 
             res.render("detallePersonaje", {
                 personaje: rows[0],
-                habilidades
+                habilidades,
+                auditoriaHabilidades
             });
         })
         .catch(err => {
