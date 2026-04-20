@@ -296,6 +296,29 @@
         </p>
     </div>
 
+    <hr>
+
+    <h3>Lab 26 - Servicios web</h3>
+
+    <div class="mb-4">
+        <h5>1. ¿Qué ventajas y desventajas tiene integrar aplicaciones web con servicios de terceros?</h5>
+        <p>
+            Una ventaja es que se puede agregar funcionalidad ya desarrollada por otros servicios, como mapas,
+            pagos, videos, calendarios o redes sociales, sin construir todo desde cero. Esto acelera el desarrollo
+            y permite usar plataformas especializadas.
+        </p>
+        <p>
+            La desventaja es que la aplicación depende de la disponibilidad, límites, permisos y cambios de la API
+            externa. Si el proveedor cambia sus reglas, requiere autenticación adicional o deja de responder, la
+            aplicación debe manejar ese error sin romper la experiencia del usuario.
+        </p>
+        <p>
+            Para este laboratorio se eligió Vimeo en lugar de Instagram porque permite consultar metadata pública
+            con oEmbed sin configurar tokens. En la galería se consume un endpoint local que a su vez consulta Vimeo
+            y devuelve la respuesta en formato JSON.
+        </p>
+    </div>
+
 </div>
 
 <%- include("includes/footer") %>
